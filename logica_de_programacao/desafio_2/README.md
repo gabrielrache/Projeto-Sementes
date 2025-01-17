@@ -4,6 +4,9 @@ Você deve escrever um programa de console para um mercado que irá registrar as
 O sistema deve ler a informação do produto e calcular o valor total a ser pago considerando as seguintes regras de desconto:
 
 a. Até 10 unidades: valor total
+
 b. De 11 a 20 unidades: 10% de desconto
+
 c. De 21 a 50 unidades: 20% de desconto
+
 d. Acima de 50 unidades: 25% de desconto
