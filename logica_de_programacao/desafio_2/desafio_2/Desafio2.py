@@ -1,9 +1,11 @@
+from math import floor
 import locale
+
 
 locale.setlocale(locale.LC_MONETARY, 'pt_BR.UTF-8')
 
 def format_money(value):
-    return locale.currency(value, grouping=True, symbol="R$" )
+    return locale.currency(value, grouping=True, symbol=True )
 
 print ('-------------------------------')
 print ('Desafio 2 - compra com desconto')
@@ -15,26 +17,25 @@ bill = 0
 
 while True:
     
-    getItem  = input('\nDigite o produto desejado: ')
-    item = getItem.strip()
-
-    if len(getItem) == 0:
+    item  = input('\nDigite o produto desejado: ').strip()
+     
+    if len(item) == 0:
         break
 
-    getPrice = input('Digite o valor do produto: ')
-    if (len(getPrice) == 0):
+    price = input('Digite o valor do produto: ')
+    if len(price) == 0:
         break
 
-    price = float(getPrice.replace(',','.'))
+    price = float(price.replace(',','.'))
     if (price == 0):
         break
 
 
-    getQuantity = input('Digite a quantidade desejada: ')
-    if len(getQuantity) == 0:
+    quantity = input('Digite a quantidade desejada: ')
+    if len(quantity) == 0:
         break
 
-    quantity = int(getQuantity.replace(',','.'))
+    quantity = floor(float(quantity.replace(',','.')))
     if quantity == 0:
         break
 
