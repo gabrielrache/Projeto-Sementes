@@ -6,7 +6,7 @@ locale.setlocale(locale.LC_MONETARY, 'pt_BR.UTF-8')
 
 def format_money(value):
     """Retorna strung com formatação de BRL"""
-    return locale.currency(value, grouping=True, symbol="R$" )
+    return locale.currency(value, grouping=True, symbol=True )
 
 with open("productStock.json", encoding="UTF-8") as productStock:
     stockItems = json.load(productStock)
