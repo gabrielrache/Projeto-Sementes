@@ -16,6 +16,7 @@ def monta_tela (a_value, operator_str, b_value, result):
 
     elif operator_str is not None:
         print (f'{a_value} {operator_str}')
+    
     elif a_value is not None:
         print (f'{a_value}')
 
