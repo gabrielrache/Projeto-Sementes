@@ -1,4 +1,4 @@
-
+"""Calcula a média de notas e retorna aa situação"""
 print ('--------------------------------')
 print ('Desafio 3 - Calculadora de notas')
 print ('---------------------------------\n\n')

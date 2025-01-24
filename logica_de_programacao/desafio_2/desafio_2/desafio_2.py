@@ -1,11 +1,13 @@
-from math import floor
+"""Registra itens e quantidades, aplicando desconto ao atender critérios"""
 import locale
+from math import floor
 
 
 locale.setlocale(locale.LC_MONETARY, 'pt_BR.UTF-8')
 
-def format_money(value):
-    return locale.currency(value, grouping=True, symbol=True )
+def format_money(val):
+    """Retorna valor formatado em BRL"""
+    return locale.currency(val, grouping=True, symbol=True )
 
 print ('-------------------------------')
 print ('Desafio 2 - compra com desconto')
@@ -16,9 +18,9 @@ shoppingCart = []
 bill = 0
 
 while True:
-    
+
     item  = input('\nDigite o produto desejado: ').strip()
-     
+
     if len(item) == 0:
         break
 
@@ -27,7 +29,7 @@ while True:
         break
 
     price = float(price.replace(',','.'))
-    if (price == 0):
+    if price == 0:
         break
 
 
@@ -55,7 +57,8 @@ while True:
     value = price * quantity * discount
     bill += value
 
-    shoppingCart.append(f'{quantity}x {item} - {format_money(price)} un. = {format_money(price * quantity)} \n'
+    shoppingCart.append(f'{quantity}x {item} - {format_money(price)} un. = '
+                        f'{format_money(price * quantity)} \n'
                         f'Total do item: {format_money(value)} (Desconto: {1-discount:.0%})')
 
 if len(shoppingCart) > 0:

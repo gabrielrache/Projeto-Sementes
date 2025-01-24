@@ -1,31 +1,33 @@
+"""Implementação simples de uma calculadora de quatro operações"""
 import os
 
-def montaTela (a, operator, b, result):
+def monta_tela (a_value, operator_str, b_value, result):
+    """IMprime a UI da calculadora no terminal"""
     os.system("cls")
     print ('-----------------------')
     print ('Desafio 4 - Calculadora')
     print ('-----------------------\n')
 
     if result is not None:
-        print (f'{a} {operator} {b} = {result}')
+        print (f'{a_value} {operator_str} {b_value} = {result}')
 
-    elif b is not None:
-        print (f'{a} {operator} {b}')
+    elif b_value is not None:
+        print (f'{a_value} {operator_str} {b_value}')
 
-    elif operator is not None:
-            print (f'{a} {operator}')
-    elif a is not None:
-        print (f'{a}')
+    elif operator_str is not None:
+        print (f'{a_value} {operator_str}')
+    elif a_value is not None:
+        print (f'{a_value}')
 
 
 while True:
-    montaTela(None,None,None,None)
+    monta_tela(None,None,None,None)
     a = float(input('\ndigite o primeiro termo: '))
 
-    montaTela(a,None,None,None)
+    monta_tela(a,None,None,None)
     operator = input('digite o operador matemático: ')
 
-    montaTela(a,operator,None,None)
+    monta_tela(a,operator,None,None)
     b = float(input('digite o segundo termo: '))
 
     solution = None
@@ -45,12 +47,12 @@ while True:
             print ('operador não encontrado')
 
     if solution is not None:
-        montaTela(a,operator,b,solution)
+        monta_tela(a,operator,b,solution)
 
     repeat = 0
 
     while repeat != 'y' and repeat != 'n':
-        montaTela(a,operator,b,solution)
+        monta_tela(a,operator,b,solution)
         repeat = input('Continuar? (y/n)')
 
     if repeat == 'n':
