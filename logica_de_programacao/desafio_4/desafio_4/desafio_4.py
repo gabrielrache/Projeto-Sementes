@@ -16,7 +16,7 @@ def monta_tela (a_value, operator_str, b_value, result):
 
     elif operator_str is not None:
         print (f'{a_value} {operator_str}')
-    
+
     elif a_value is not None:
         print (f'{a_value}')
 
@@ -31,14 +31,15 @@ while True:
     monta_tela(a,operator,None,None)
     b = float(input('digite o segundo termo: '))
 
-    solution = None
-
     match operator:
         case 'x'|'X'|'*':
             solution = a*b
 
         case '/' | ':':
-            solution = a/b
+            try:
+                solution = a/b
+            except ZeroDivisionError:
+                solution = 'impossivel dividir por zero'
 
         case '+':
             solution = a+b
@@ -52,7 +53,7 @@ while True:
 
     repeat = 0
 
-    while repeat != 'y' and repeat != 'n':
+    while repeat not in ('y','n'):
         monta_tela(a,operator,b,solution)
         repeat = input('Continuar? (y/n)')
 
