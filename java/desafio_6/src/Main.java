@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Main
 {
-    private static int lerNumero(String mensagem)
+    private static int lerNumero()
     {
         int leitura;
         String erro;
@@ -11,7 +11,7 @@ public class Main
 
         do
         {
-            System.out.print(mensagem);
+            System.out.print("Digite um número inteiro entre 1 a 10: ");
 
             try
             {
@@ -37,7 +37,7 @@ public class Main
         {
             do
             {
-                valor = lerNumero("Digite um número inteiro entre 1 a 10: ");
+                valor = lerNumero();
 
                 if (valor <1 | valor > 10)
                     System.out.printf("%d não está entre 1 e 10\n", valor);
