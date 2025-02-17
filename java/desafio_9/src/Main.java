@@ -4,10 +4,11 @@ public class Main {
 
     private static int leNumerador(){
 
-        Scanner teclado = new Scanner(System.in);
-
         int valor;
+
         String erro;
+
+        Scanner teclado = new Scanner(System.in);
 
         do {
             System.out.print("Digite o numerador: ");
@@ -15,23 +16,22 @@ public class Main {
             try {
                 valor = teclado.nextInt();
                 break;
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 erro = teclado.next();
                 System.out.printf("%s não é um numerador válido!\n", erro);
             }
-        }
-        while (true);
+        } while (true);
 
         return valor;
     }
 
     private static int leDenominador() {
 
-        Scanner teclado = new Scanner(System.in);
-
         int valor;
+
         String erro;
+
+        Scanner teclado = new Scanner(System.in);
 
         do {
             do {
@@ -44,8 +44,7 @@ public class Main {
                     erro = teclado.next();
                     System.out.printf("%s não é um número válido!\n", erro);
                 }
-            }
-            while (true);
+            } while (true);
 
             if (valor == 0)
                 System.out.println("Digite um denominador válido!");

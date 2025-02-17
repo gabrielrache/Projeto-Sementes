@@ -1,9 +1,8 @@
 import java.util.Scanner;
 
-public class Main
-{
-    public static void main(String[] args)
-    {
+public class Main {
+    public static void main(String[] args) {
+
         String produto;
         int idade;
         boolean autoriza = false;
@@ -20,23 +19,14 @@ public class Main
 
         produto = teclado.next();
 
-        if (produto.equals("3") | produto.equalsIgnoreCase("cerveja"))
-        {
+        if (produto.equals("3") || produto.equalsIgnoreCase("cerveja")) {
             System.out.print("Digite a sua idade: ");
             idade = teclado.nextInt();
             autoriza = (idade > 18);
-        }
-        else {
-            if (produto.equals("1")
-                    | produto.equals("2")
-                    | produto.equalsIgnoreCase("refrigerante")
-                    | produto.equalsIgnoreCase("água")
-                    | produto.equalsIgnoreCase("agua")) 
-            {
+        } else {
+            if (produto.equals("1") || produto.equals("2") || produto.equalsIgnoreCase("refrigerante") || produto.equalsIgnoreCase("água") || produto.equalsIgnoreCase("agua"))
                 autoriza = true;
-            } 
-            else 
-            {
+            else {
                 System.out.println("produto não encontrado");
                 System.exit(0);
             }

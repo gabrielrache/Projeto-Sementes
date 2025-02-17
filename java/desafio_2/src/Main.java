@@ -1,16 +1,16 @@
 import java.util.Scanner;
 
-public class Main
-{
-    public static void main(String[] args)
-    {
-        Scanner teclado = new Scanner(System.in);
-        String nome;
+public class Main {
+    public static void main(String[] args) {
+
         int quantidade;
         float desconto;
         float valor;
         float total;
-    
+
+        String nome;
+        Scanner teclado = new Scanner(System.in);
+
         System.out.print("Digite o nome do produto: ");
         nome = teclado.next();
 
@@ -20,17 +20,13 @@ public class Main
         System.out.print("Digite o valor: ");
         valor = teclado.nextFloat();
 
-        if (quantidade > 50)
-        {
+        if (quantidade > 50) {
             desconto = 25;
-        } else if (quantidade > 20)
-        {
+        } else if (quantidade > 20) {
             desconto = 20;
-        } else if (quantidade > 10)
-        {
+        } else if (quantidade > 10) {
             desconto = 10;
-        } else
-        {
+        } else {
             desconto = 0;
         }
 
@@ -39,6 +35,5 @@ public class Main
         System.out.printf("Você comprou %d unidade(s) de %s por %.2f", quantidade, nome, total );
         if (desconto > 0)
             System.out.printf(" ganhando um desconto de %.0f%%!", desconto);
-
     }
 }
