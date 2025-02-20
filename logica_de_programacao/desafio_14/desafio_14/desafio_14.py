@@ -11,6 +11,7 @@ for name in singer:
     quantity = singer.count(name)
 
     if quantity > 1:
-        singer.pop(singer.index(name))
+        for i in range(quantity-1):
+            singer.pop(singer.index(name))
 
 print (singer)
