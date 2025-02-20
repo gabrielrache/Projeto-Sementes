@@ -29,7 +29,7 @@ public class Main {
                 System.out.println("compra negada");
 
         } else if (produto.equals("1") || produto.equals("2") || produto.equalsIgnoreCase("refrigerante") || produto.equalsIgnoreCase("água") || produto.equalsIgnoreCase("agua"))
-            System.out.println("Compra efetuada com sucesso");
+            System.out.println("Compra efetuada com sucesso!");
         else
             System.out.println("produto não encontrado");
     }
