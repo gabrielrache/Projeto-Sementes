@@ -9,24 +9,25 @@ public class Main {
 
         Scanner teclado = new Scanner(System.in);
 
-        do {
-            do {
+        while (true) {
+            while (true) {
                 System.out.printf("Digite um número inteiro entre %d a %d: ", val_a, val_b);
 
                 try {
                     leitura = teclado.nextInt();
                     break;
                 } catch (Exception e) {
-                    erro = teclado.next();
+                    erro = teclado.nextLine();
                     System.out.printf("%s não é um número inteiro!\n", erro);
                 }
-            } while (true);
+            }
 
             if (leitura < val_a || leitura > val_b)
                 System.out.printf("%d não está entre %d e %d\n", leitura, val_a, val_b);
             else
                 break;
-        } while (true);
+        }
+        teclado.close();
 
         return leitura;
     }
