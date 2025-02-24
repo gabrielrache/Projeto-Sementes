@@ -2,10 +2,9 @@ import java.util.Scanner;
 
 public class Main {
 
-    private static String leEntrada (String mensagem) {
+    private static String leEntrada (String mensagem, Scanner teclado) {
 
         String entrada;
-        Scanner teclado = new Scanner(System.in);
 
         while (true) {
             System.out.print(mensagem);
@@ -22,21 +21,24 @@ public class Main {
 
     public static void main(String[] args) {
 
+        Scanner scan = new Scanner(System.in);
         String usuario, senha;
 
         for (int tentativa = 1; tentativa <= 3; tentativa++) {
 
-            usuario = leEntrada("Digite o nome de usuário: ");
-            senha = leEntrada("Digite a senha: ");
+            usuario = leEntrada("Digite o nome de usuário: ", scan);
+            senha = leEntrada("Digite a senha: ", scan);
 
             if (usuario.equals("aluno") && senha.equals("segredo")) {
                 System.out.println("Bem vindo!");
+                scan.close();
                 System.exit(0);
             } else {
                 System.out.println("Usuário e/ou Senha incorretos!");
             }
         }
         System.out.println("Login bloqueado - Excesso de tentativas");
+        scan.close();
         System.exit(-1);
     }
 }
