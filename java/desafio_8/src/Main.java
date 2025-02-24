@@ -2,12 +2,10 @@ import java.util.Scanner;
 
 public class Main {
 
-    private static int lerNumeroEntreAeB(int val_a, int val_b) {
+    private static int lerNumeroEntreAeB(int val_a, int val_b, Scanner teclado) {
 
         int leitura;
         String erro;
-
-        Scanner teclado = new Scanner(System.in);
 
         while (true) {
             while (true) {
@@ -27,14 +25,14 @@ public class Main {
             else
                 break;
         }
-        teclado.close();
-
         return leitura;
     }
 
     public static void main(String[] args) {
 
-        int numero = lerNumeroEntreAeB(1,10);
+        Scanner scan = new Scanner(System.in);
+
+        int numero = lerNumeroEntreAeB(1,10, scan);
         int resultado;
 
         for (int i = 1; i <= 10; i++) {
@@ -44,6 +42,8 @@ public class Main {
             resultado = i * numero;
 
             System.out.printf("%d x %d = %d\n", numero, i, resultado);
+
+            scan.close();
         }
     }
 }
