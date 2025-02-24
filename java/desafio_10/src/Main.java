@@ -5,16 +5,16 @@ public class Main {
 
     public static void main(String[] args) {
 
+        Scanner teclado = new Scanner(System.in);
+
         while (true) {
 
             float[] notas = new float[2];
-            Scanner teclado = new Scanner(System.in);
-
             int n = 0;
 
             while (n < 2) {
 
-                System.out.printf("Digite a notas %d: ", (n + 1));
+                System.out.printf("Digite a nota %d: ", (n + 1));
 
                 try {
                     notas[n] = teclado.nextFloat();
@@ -26,8 +26,8 @@ public class Main {
                     n++;
 
                 } catch (Exception e) {
-                    String erro = teclado.next();
-                    System.out.printf("%s não é uma notas válida!\n", erro);
+                    String erro = teclado.nextLine();
+                    System.out.printf("%s não é uma nota válida!\n", erro);
                 }
             }
 
@@ -52,6 +52,8 @@ public class Main {
                 continuar = teclado.next();
 
                 if (continuar.equalsIgnoreCase("N")) {
+                    teclado.close();
+                    System.out.println(continuar);
                     System.exit(0);
                 }
             } while (!continuar.equalsIgnoreCase("S"));
