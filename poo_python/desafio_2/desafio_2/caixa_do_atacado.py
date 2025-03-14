@@ -1,4 +1,4 @@
-"""Esse módulo contém a classe CaixaDoAtacado"""
+"""Esse módulo contém a classe CaixaDoAtacado e também atua como módulo principal """
 
 import csv
 import os
@@ -7,16 +7,17 @@ from atacado import Atacado
 class CaixaDoAtacado():
     """Define o comportamento dos caixas do Atacado"""
 
-    def __init__(self, numero_caixa):
+    def __init__ (self, numero_caixa:int):
+        self._atacado = Atacado()
         self._numero = numero_caixa
         print (f"Caixa {self._numero} aberto")
 
-    def get_numero(self):
+    def get_numero (self):
         '''Getter numero'''
         return self._numero
 
     @classmethod
-    def listar_pedidos(cls):
+    def listar_pedidos (cls):
         '''Lista todos os pedidos disponíveis para computar no diretório'''
         pedidos_path = "desafio_2/pedidos"
 
@@ -29,7 +30,7 @@ class CaixaDoAtacado():
             print(i)
 
     @classmethod
-    def _ler_arquivo (cls, numero):
+    def _ler_arquivo (cls, numero:int):
 
         path_arq = "desafio_2/pedidos/" + str(numero) + ".csv"
 
@@ -54,32 +55,37 @@ class CaixaDoAtacado():
         return pedido
 
 
-    def computar_compra (self,numero):
-        """Método que computa o valor da compra e seus descontos"""
+    def computar_compra (self, origem:Atacado, numero_pedido:int):
+        """Processa o pedido, calculando o valor da compra e seus descontos com base nos produtos
+            identificados no arquivo de pedido"""
 
-        pedido = self._ler_arquivo(numero)
+        pedido = self._ler_arquivo(numero_pedido)
         valor_compra = 0
         cupom_fiscal = []
 
         if len(pedido) > 1:
 
-            for i, registro in enumerate(pedido):
+            print(f"\n\nIniciando o processamento do pedito {numero_pedido}" )
 
-                if i == 0:
+            for linha, registro in enumerate(pedido):
+
+                if linha == 0:
                     if str(registro[0]) in ('debito', 'credito', 'dinheiro'):
                         pagamento = str(registro[0])
                     else:
                         pagamento = "não informado"
 
-                    cupom_fiscal.append("\n------------------------------------")
-                    cupom_fiscal.append("------------CUPOM FISCAL------------")
-                    cupom_fiscal.append("------------------------------------")
+                    cupom_fiscal.append("\n------------------------------------------------")
+                    cupom_fiscal.append("------------------CUPOM FISCAL------------------")
+                    cupom_fiscal.append("------------------------------------------------")
+                    cupom_fiscal.append("ID--DESCRIÇÃO ITEM----QUANTIDADE--VL. UNITÁRIO--")
+                    cupom_fiscal.append("------------------------------------------------")
                 else:
                     id_produto = int(registro[0])
                     quantidade = int(registro[1])
                     desconto = 0
 
-                    produto = Atacado.buscar_produto(id_produto)
+                    produto = origem.buscar_produto(id_produto)
 
                     if produto is not None:
 
@@ -97,8 +103,10 @@ class CaixaDoAtacado():
 
                         valor_compra = valor * quantidade
 
-                        cupom_fiscal.append(f"{i} - {produto.get_nome()} {quantidade}x {valor:.2f}")
-                        cupom_fiscal.append(f"Desconto aplicado: " +
+                        cupom_fiscal.append((f"{linha} - {produto.get_nome()} {quantidade}x " +
+                            f"           {valor:.2f}"))
+
+                        cupom_fiscal.append("Desconto aplicado: " +
                                             f"{desconto}% = {valor_compra:.2f}\n")
 
             cupom_fiscal.append(f"\nForma de pagamento selecionada: {pagamento}")
@@ -117,7 +125,37 @@ class CaixaDoAtacado():
                     cupom_fiscal.append("Não há desconto para essa forma de pagamento")
 
 
-            cupom_fiscal.append(f"\nTotal do pedido: {valor_compra}")
+            cupom_fiscal.append(f"\nTotal do pedido: {valor_compra:.2f}")
+            cupom_fiscal.append("------------------------------------------------")
+            cupom_fiscal.append("------------------------------------------------")
 
-            for i in cupom_fiscal:
-                print (i)
+            for linha in cupom_fiscal:
+                print (linha)
+        else:
+            print('Não há itens no pedido!')
+
+        return valor_compra
+
+
+## MAIN movido para essa classe conforme solicitação do desafio
+# "A classe principal deverá ser a CaixaDoAtacado"
+
+atacado = Atacado()
+
+print ("\nAbertura dos caixas")
+
+caixa1 = CaixaDoAtacado(1)
+caixa2 = CaixaDoAtacado(2)
+
+
+print ("\nPedidos pendentes de processamento: \n")
+
+caixa1.listar_pedidos ()
+
+atacado.exibir_estoque ()
+
+## "A classe principal deverá ser a CaixaDoAtacado, que terá
+# um método principal computarCompra e deve retonar o valor total"
+
+vl_pedido1 = caixa1.computar_compra (atacado, 101030)
+vl_pedido2 = caixa2.computar_compra (atacado, 101032)
