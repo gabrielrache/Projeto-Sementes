@@ -1,3 +1,5 @@
 # created by virtualenv automatically
 .python-version
 pyproject.toml
+desafio_3\__pycache__/
+.venv/

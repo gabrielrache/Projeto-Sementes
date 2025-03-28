@@ -41,19 +41,13 @@ MENU:
 DIGITE A OPÇÃO DESEJADA: """)
 
 
-def executar_operacao(op):
+def executar_operacao(op:int):
     '''Executa as operações da agenda telefônica 
         retorna flag para continuar execução'''
 
     match op:
         case 1:
-            nome = input("\nDigite o nome do novo contato: ")
-            telefone = input("Digite o telefone do contato: ")
-
-            while re.search(PAD_FONE,telefone) is None:
-                telefone = input("Digite um telefone válido: ")
-
-            AgendaTelefonica.adicionar_contato(Contato(nome, telefone))
+            AgendaTelefonica.adicionar_contato()
 
             input("Pressione qualquer tecla para continuar...")
             return True
@@ -70,10 +64,19 @@ def executar_operacao(op):
         case 3:
             nome = input("\nDigite o nome do contato a ser exibido: ")
 
-            contato = AgendaTelefonica.buscar_contato(nome)
+            contatos_encontrados = AgendaTelefonica.buscar_contato(nome)
 
-            print (f"Nome: {contato.get_nome()}\n" +
-                   f"Telefone: {contato.get_telefone()}")
+            if len(contatos_encontrados) > 1:
+                print (f"foram econtrados {len(contatos_encontrados)} contatos: ")
+            elif len(contatos_encontrados) == 1:
+                print ("Foi econtrado um contato: ")
+
+            if len(contatos_encontrados) == 0:
+                print (f"Contato {nome} não encontrado!")
+            else:
+                for contato in contatos_encontrados:
+                    print (f"Nome: {contato.get_nome()}\n" +
+                        f"Telefone: {contato.get_telefone()}")
 
             input("Pressione qualquer tecla para continuar...")
             return True
@@ -88,7 +91,7 @@ def executar_operacao(op):
 
                 while re.search(PAD_FONE,telefone) is None:
                     telefone = input("Digite um telefone válido: ")
-
+                print("chamei atualizar") ##DEBUG
                 AgendaTelefonica.atualizar_contato(nome, Contato(novo_nome, telefone))
             input("Pressione qualquer tecla para continuar...")
             return True
@@ -115,8 +118,8 @@ PAD_FONE = r"^[0-9]{8,9}$"
 continuar = True
 
 while continuar:
-    print("Comecei")
     imprime_menu()
+
     opcao = ler_opcao()
 
     while not 0 <= opcao <= 5:
