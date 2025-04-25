@@ -7,11 +7,11 @@ class Contato:
         self.__telefone = telefone
 
 
-    def get_nome(self):
+    def get_nome(self) -> str:
         '''Getter Contato.nome'''
         return self.__nome
 
-    def get_telefone(self):
+    def get_telefone(self) -> str:
         '''Getter Contato.telefone'''
         return self.__telefone
 
